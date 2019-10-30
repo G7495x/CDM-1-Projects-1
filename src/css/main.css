@@ -21,17 +21,16 @@ body {
   left: 0;
   margin: 0; }
 
-.four-three {
-  background-color: black; }
-  @media only screen and (orientation: landscape) {
-    .four-three {
-      width: 1024px;
-      height: 768px; } }
-  @media only screen and (orientation: portrait) {
-    .four-three {
-      width: 100%; }
-      .four-three::after {
-        content: "";
-        float: left;
-        clear: both;
-        padding-top: 75%; } }
+@media only screen and (orientation: landscape) {
+  .four-three {
+    width: 1024px;
+    height: 768px; } }
+
+@media only screen and (orientation: portrait) {
+  .four-three {
+    width: 100%; }
+    .four-three::after {
+      content: "";
+      float: left;
+      clear: both;
+      padding-top: 75%; } }

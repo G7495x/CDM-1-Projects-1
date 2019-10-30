@@ -30,7 +30,7 @@ window.onresize=()=>setupRenderer()
 const animate=()=>{
 	requestAnimationFrame(animate)
 
-	particles.rotation.y=time/250
+	particleSphere.rotation.y=time/250
 
 	renderer.render(scene,camera)
 	++time
