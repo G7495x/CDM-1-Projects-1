@@ -43,8 +43,3 @@ const particlesMaterial=new THREE.ShaderMaterial({
 })
 const particleSphere=new THREE.Mesh(particlesGeometry,particlesMaterial)
 scene.add(particleSphere)
-
-// var circleGeometry = new THREE.CircleGeometry( 5, 32 );
-// var circleMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-// var circle = new THREE.Mesh( circleGeometry, circleMaterial );
-// scene.add( circle );
