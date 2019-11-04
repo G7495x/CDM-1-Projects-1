@@ -13,7 +13,7 @@ const fibonacciSpherePoints=(samples=1,radius=1,randomize=false)=>{
 		sphericalCoordinates[j++]=Math.asin(y)
 		sphericalCoordinates[j++]=theta
 
-		const radiusAtY=Math.sqrt(1-Math.pow(y,2))
+		const radiusAtY=Math.sqrt(1-y*y)
 		const x=Math.cos(theta)*radiusAtY
 		const z=Math.sin(theta)*radiusAtY
 		cartesianCoordinates[k++]=x*radius

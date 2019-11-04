@@ -25,7 +25,10 @@ body{
 }
 
 .four-three{
-	// background-color: black;
+	/* background-color: black; */
+	border-radius: 10px;
+	/* background-image: linear-gradient(90deg,rgba(229,178,0,.1),transparent); */
+	box-shadow: 0 50px 100px rgba(0,0,0,.1);
 	@media only screen and (orientation: landscape){
 		width: 1024px;
 		height: 768px;
