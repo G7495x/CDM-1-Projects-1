@@ -37,26 +37,27 @@ scene.add(directionalLight)
 const ambientLight=new THREE.AmbientLight(0xeeeeee)
 scene.add(ambientLight)
 
-const arc={}
+const arcs={}
+const dotGeometry=new THREE.SphereBufferGeometry(2,9,9)
+const dotMaterial=new THREE.MeshBasicMaterial({ color: 0xc90b1c })
 const addArc=(s,d)=>{
-	const arcSegCount=Math.floor(geoData[s].xyz.angleTo(geoData[d].xyz)/piBy180)
+	const arcSegmentCount=Math.floor(geoData[s].xyz.angleTo(geoData[d].xyz)/piBy180)
 	const src=geoData[s].phiTheta
 	const dst=geoData[d].phiTheta
 
 	if(Math.abs(src.y-dst.y)>Math.PI) dst.y-=Math.PI*2
 
-	const arcPoints=new Array(arcSegCount+1)
-	arc[d]={}
-	arc[d].points=arcPoints
-	for(let i=0;i<=arcSegCount;++i)
-		arcPoints[i]=sphericalToCartesian(src.clone().lerp(dst,i/arcSegCount)).multiplyScalar(sphereRadius+Math.sin(Math.PI*i/arcSegCount)*arcHeight)
-
-	for(let i=0;i<arcSegCount;++i){
-		const geometry=new THREE.SphereBufferGeometry(2,9,9)
-		const material=new THREE.MeshBasicMaterial({ color: 0xc90b1c })
-		const dot=new THREE.Mesh(geometry,material)
-		dot.position.set(...arcPoints[i].toArray())
-		group.add(dot)
+	const arcPoints=new Array(arcSegmentCount+1)
+	const arcDots=new Array(arcSegmentCount+1)
+	arcs[d]={}
+	arcs[d].points=arcPoints
+	arcs[d].dots=arcDots
+	for(let i=0;i<=arcSegmentCount;++i){
+		arcPoints[i]=sphericalToCartesian(src.clone().lerp(dst,i/arcSegmentCount)).multiplyScalar(sphereRadius+Math.sin(Math.PI*i/arcSegmentCount)*arcHeight)
+		arcDots[i]=new THREE.Mesh(dotGeometry,dotMaterial)
+		arcDots[i].position.set(...arcPoints[i].toArray())
+		arcDots[i].scale.set(0,0,0)
+		group.add(arcDots[i])
 	}
 }
 

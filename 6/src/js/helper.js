@@ -25,3 +25,5 @@ const httpGetText=url=>{
 	request.send()
 	return request.responseText
 }
+
+const clamp=(n,min,max)=>Math.min(Math.max(n,min),max)

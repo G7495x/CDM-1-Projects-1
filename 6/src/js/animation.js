@@ -1,5 +1,5 @@
 const stages=[
-	{ length: 2 },
+	{ length: 1 },
 	{ length: 2 },
 	{ length: 4 },
 ]
@@ -53,9 +53,20 @@ const stagedAnimation=[
 		geoData['china'].material.opacity=phase
 	},
 	/* 1 */ phase=>{
-
+		for(let country in arcs) setArcPhase(arcs[country],phase)
 	},
 	/* 2 */ phase=>{
 
 	},
 ]
+
+setArcPhase=(arc,phase)=>{
+	phase*=4
+	let l=arc.dots.length-1,p,scale
+	for(let i=0;i<=l;++i){
+		const p=i/l
+		if(phase<=2) scale=clamp(phase-p,0,1)
+		else scale=clamp(4-phase-(1-p),0,1)
+		arc.dots[i].scale.set(scale,scale,scale)
+	}
+}
