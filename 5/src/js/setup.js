@@ -25,7 +25,7 @@ window.onresize=()=>setupRenderer()
 const animate=()=>{
 	requestAnimationFrame(animate)
 
-	group.rotation.y=time/250
+	group.rotation.y=-time/250
 
 	renderer.render(scene,camera)
 	++time

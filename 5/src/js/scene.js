@@ -16,19 +16,21 @@ const sphereMaterial=new THREE.MeshStandardMaterial({
 const sphere=new THREE.Mesh(sphereGeometry,sphereMaterial)
 group.add(sphere)
 
-// const directionalLight=new THREE.DirectionalLight(0xffffff)
-// directionalLight.position.set(0,1,-1)
-// scene.add(directionalLight)
+const directionalLight=new THREE.DirectionalLight(0x272727)
+directionalLight.position.set(0,1,-1)
+scene.add(directionalLight)
 
 // let ambientLight=new THREE.AmbientLight(0xfffbf0)
 // const ambientLight=new THREE.AmbientLight(0xefefef)
-const ambientLight=new THREE.AmbientLight(0xffffff)
+const ambientLight=new THREE.AmbientLight(0xeeeeee)
 scene.add(ambientLight)
 
-const addArc=(src,dst)=>{
-	const arcSegCount=Math.floor(geoData[src].xyz.angleTo(geoData[dst].xyz)/piBy180)
-	src=geoData[src].phiTheta
-	dst=geoData[dst].phiTheta
+const addArc=(s,d)=>{
+	const arcSegCount=Math.floor(geoData[s].xyz.angleTo(geoData[d].xyz)/piBy180)
+	const src=geoData[s].phiTheta
+	const dst=geoData[d].phiTheta
+
+	if(Math.abs(src.y-dst.y)>Math.PI) dst.y-=Math.PI*2
 
 	const arcPoints=new Array(arcSegCount+1)
 	for(let i=0;i<=arcSegCount;++i)
