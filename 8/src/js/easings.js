@@ -5,6 +5,10 @@
 // c=Change in Value
 // d=Duration
 
+// TODO:
+// Smoothstep, smootherstep
+// Inverse
+
 linearTween=(t,b=0,c=1,d=1)=>c*t/d+b
 
 easeInQuad=(t,b=0,c=1,d=1)=>{

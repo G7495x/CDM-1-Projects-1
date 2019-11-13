@@ -46,6 +46,7 @@ const smootherStep=phase=>{
 
 const initAngle=geoData['china'].phiTheta.y
 const hightlightAngle=30*piBy180
+geoData['peru'].phiTheta.y-=Math.PI*2
 const stagedAnimation=[
 	/* 0 */ phase=>{
 		group.rotation.y=initAngle-easeOutCubic(phase)*twoPi
@@ -59,29 +60,34 @@ const stagedAnimation=[
 	},
 	/* 2 */ phase=>{
 		for(let country in arcs){
-			let displacement=angularDisplacement.radian(group.rotation.y,geoData[country].phiTheta.y)
-			let p=displacement/hightlightAngle
+			let displacement=group.rotation.y-geoData[country].phiTheta.y
+			let p=Math.abs(displacement/hightlightAngle)
 			if(p<=1){
 				p=(1-p)/2
-				if(group.rotation.y<geoData[country].phiTheta.y) p=1-p
-				setArcPhase(arcs[country],phase*p)
-				setCountryTransparency(country,phase*p)
+				setCountryTransparency(country,p*phase)
+				setArcPhase(arcs[country],p*phase)
+			}
+			if(displacement<0){
+				p=.5
+				setCountryTransparency(country,p*phase)
+				setArcPhase(arcs[country],p*phase)
 			}
 		}
 	},
 	/* 3 */ phase=>{
 		group.rotation.y=initAngle-easeInOutSine(phase)*twoPi
 		for(let country in arcs){
-			let displacement=angularDisplacement.radian(group.rotation.y,geoData[country].phiTheta.y)
-			let p=displacement/hightlightAngle
+			let displacement=group.rotation.y-geoData[country].phiTheta.y
+			let p=Math.abs(displacement/hightlightAngle)
 			if(p<=1){
 				p=(1-p)/2
-				if(group.rotation.y<geoData[country].phiTheta.y) p=1-p
 				setCountryTransparency(country,p)
 				setArcPhase(arcs[country],p)
-			}else{
-				setArcPhase(arcs[country],0)
-				setCountryTransparency(country,0)
+			}
+			if(displacement<0){
+				p=.5
+				setCountryTransparency(country,p)
+				setArcPhase(arcs[country],p)
 			}
 		}
 	},

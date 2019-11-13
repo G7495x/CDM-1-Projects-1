@@ -38,14 +38,19 @@ const normalizeAngle={}
 }
 
 // Angular displacement between 2 angles
+// Special case: -180=180
 const angularDisplacement={}
 {
 	const angularDisplacementGenerator=(constant,scale)=>(a,b)=>{
 		a=normalizeAngle[scale](a)
 		b=normalizeAngle[scale](b)
-		const diff=Math.abs(a-b)
-		return Math.min(diff,constant-diff)
+		a-=b
+		if(a>constant/2) a-=constant
+		else if(a<constant/-2) a+=constant
+		return a
 	}
 	angularDisplacement.radian=angularDisplacementGenerator(twoPi,'radian')
 	angularDisplacement.degree=angularDisplacementGenerator(360,'degree')
 }
+
+const getCanvasBlob=canvas=>new Promise(resolve=>canvas.toBlob(blob=>resolve(blob)))
