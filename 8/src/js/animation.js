@@ -9,6 +9,7 @@ let clock=0
 let stage=0
 let phase=0
 let duration=0
+let frameCount=0
 
 {
 	let start=0
@@ -17,6 +18,8 @@ let duration=0
 		start+=stage.length
 	}
 	duration=start
+	scrubberEle.step=1/(duration*frameRate-1)
+	frameCount=duration*frameRate
 }
 const animation=()=>{
 	while(1){
@@ -46,10 +49,10 @@ const smootherStep=phase=>{
 
 const initAngle=geoData['china'].phiTheta.y
 const hightlightAngle=30*piBy180
-geoData['peru'].phiTheta.y-=Math.PI*2
 const stagedAnimation=[
 	/* 0 */ phase=>{
-		group.rotation.y=initAngle-easeOutCubic(phase)*twoPi
+		const p=easeOutCubic(phase)
+		group.rotation.y=initAngle-p*twoPi
 		geoData['china'].material.opacity=phase
 	},
 	/* 1 */ phase=>{
@@ -60,34 +63,47 @@ const stagedAnimation=[
 	},
 	/* 2 */ phase=>{
 		for(let country in arcs){
-			let displacement=group.rotation.y-geoData[country].phiTheta.y
-			let p=Math.abs(displacement/hightlightAngle)
-			if(p<=1){
-				p=(1-p)/2
-				setCountryTransparency(country,p*phase)
-				setArcPhase(arcs[country],p*phase)
+			if(phase==0){
+				group.rotation.y=initAngle
+				setCountryTransparency(country,0)
+				setArcPhase(arcs[country],0)
 			}
-			if(displacement<0){
-				p=.5
-				setCountryTransparency(country,p*phase)
-				setArcPhase(arcs[country],p*phase)
+			if(group.rotation.y<geoData[country].phiTheta.y){
+				setCountryTransparency(country,.5*phase)
+				setArcPhase(arcs[country],.5*phase)
+			}else{
+				let p=(group.rotation.y-geoData[country].phiTheta.y)/hightlightAngle
+				if(p<=1){
+					p=1-p
+					setCountryTransparency(country,.5*p*phase)
+					setArcPhase(arcs[country],.5*p*phase)
+				}else{
+					setCountryTransparency(country,0)
+					setArcPhase(arcs[country],0)
+				}
 			}
 		}
 	},
 	/* 3 */ phase=>{
 		group.rotation.y=initAngle-easeInOutSine(phase)*twoPi
 		for(let country in arcs){
-			let displacement=group.rotation.y-geoData[country].phiTheta.y
-			let p=Math.abs(displacement/hightlightAngle)
-			if(p<=1){
-				p=(1-p)/2
-				setCountryTransparency(country,p)
-				setArcPhase(arcs[country],p)
+			if(phase==0){
+				setCountryTransparency(country,0)
+				setArcPhase(arcs[country],0)
 			}
-			if(displacement<0){
-				p=.5
-				setCountryTransparency(country,p)
-				setArcPhase(arcs[country],p)
+			if(group.rotation.y<geoData[country].phiTheta.y){
+				setCountryTransparency(country,.5)
+				setArcPhase(arcs[country],.5)
+			}else{
+				let p=(group.rotation.y-geoData[country].phiTheta.y)/hightlightAngle
+				if(p<=1){
+					p=1-p
+					setCountryTransparency(country,.5*p)
+					setArcPhase(arcs[country],.5*p)
+				}else{
+					setCountryTransparency(country,0)
+					setArcPhase(arcs[country],0)
+				}
 			}
 		}
 	},
@@ -100,7 +116,7 @@ setArcPhase=(arc,phase)=>{
 		p=i/l
 		if(phase<=2) scale=clamp(phase-p,0,1)
 		else scale=clamp(4-phase-(1-p),0,1)
-		scale=Math.round(scale)
+		scale=Math.round(scale)+.0001
 		arc.dots[i].scale.set(scale,scale,scale)
 	}
 }

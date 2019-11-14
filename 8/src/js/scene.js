@@ -31,7 +31,7 @@ for(let country in geoData){
 }
 
 const directionalLight=new THREE.DirectionalLight(0x272727)
-directionalLight.position.set(1,1,0)
+directionalLight.position.set(1,1,.0001)
 scene.add(directionalLight)
 
 const ambientLight=new THREE.AmbientLight(0xeeeeee)
@@ -57,7 +57,7 @@ const addArc=(s,d)=>{
 		arcPoints[i]=sphericalToCartesian(src.clone().lerp(dst,i/arcSegmentCount)).multiplyScalar(sphereRadius+Math.sin(Math.PI*i/arcSegmentCount)*arcHeight)
 		arcDots[i]=new THREE.Mesh(dotGeometry,dotMaterial)
 		arcDots[i].position.set(...arcPoints[i].toArray())
-		arcDots[i].scale.set(0,0,0)
+		arcDots[i].scale.set(.0001,.0001,.0001)
 		group.add(arcDots[i])
 	}
 }
