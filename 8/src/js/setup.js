@@ -45,7 +45,7 @@ const animate=()=>{
 
 	if(playbtn.checked && record){
 		frameIndex=Math.round(scrubberEle.value*duration*frameRate)
-		getCanvasBlob(rendererEle).then(blob=>zip.file(frameIndex+".png",blob))
+		getCanvasBlob(rendererEle).then(blob=>zip.file(frameIndex+'.png',blob))
 	}
 }
 window.onload=()=>{
@@ -76,3 +76,8 @@ for(let country in geoData){
 
 const zip=new JSZip()
 const downloadZip=()=>zip.generateAsync({type:'blob'}).then(content=>saveAs(content,'frames.zip'))
+const skippedFrames=()=>{
+	const a=[]
+	for(i=0;i<frameCount;++i) if(!zip.files[i+'.png']) a.push(i)
+	return a
+}
