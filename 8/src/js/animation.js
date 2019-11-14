@@ -1,6 +1,6 @@
 const stages=[
 	{ length: 8 },
-	{ length: 4 },
+	// { length: 4 },
 	{ length: 2 },
 	{ length: 10 },
 ]
@@ -48,19 +48,19 @@ const smootherStep=phase=>{
 }
 
 const initAngle=geoData['china'].phiTheta.y
-const hightlightAngle=30*piBy180
+const hightlightAngle=90*piBy180
 const stagedAnimation=[
 	/* 0 */ phase=>{
 		const p=easeOutCubic(phase)
 		group.rotation.y=initAngle-p*twoPi
 		geoData['china'].material.opacity=phase
 	},
-	/* 1 */ phase=>{
-		for(let country in arcs){
-			setArcPhase(arcs[country],phase)
-			setCountryTransparency(country,phase)
-		}
-	},
+	// /* 1 */ phase=>{
+	// 	for(let country in arcs){
+	// 		setArcPhase(arcs[country],phase)
+	// 		setCountryTransparency(country,phase)
+	// 	}
+	// },
 	/* 2 */ phase=>{
 		for(let country in arcs){
 			if(phase==0){
