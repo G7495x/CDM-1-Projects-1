@@ -4,7 +4,7 @@
 //  S: -ve
 //  W: +ve
 const geoData={
-//china:				{latLong: new THREE.Vector2(35.8617,-104.1954)}, // Centroid
+	// china:				{latLong: new THREE.Vector2(35.8617,-104.1954)}, // Centroid
 	china:				{latLong: new THREE.Vector2(22.3193,-114.1694)}, //Port
 	indonesia:		{latLong: new THREE.Vector2(-0.7893,-113.9213)},
 	thailand:			{latLong: new THREE.Vector2(15.8700,-100.9925)},

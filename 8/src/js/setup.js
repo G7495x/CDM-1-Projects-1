@@ -1,6 +1,6 @@
 const sizeX=1024
 const sizeY=768
-const frameRate=30
+const frameRate=60
 
 const rendererEle=document.getElementById('renderer')
 const scrubberEle=document.getElementById('scrubber')
@@ -35,8 +35,8 @@ const animate=()=>{
 			playbtn.checked=false
 			clock=scrubberEle.value=0
 		}else{
-			scrubberEle.value=clock/duration
-			requestAnimationFrame(animate)
+			scrubberEle.value=clock*frameRate
+			if(!record) requestAnimationFrame(animate)
 		}
 	}
 
@@ -44,8 +44,10 @@ const animate=()=>{
 	renderer.render(scene,camera)
 
 	if(playbtn.checked && record){
-		frameIndex=Math.round(scrubberEle.value*duration*frameRate)
-		getCanvasBlob(rendererEle).then(blob=>zip.file(frameIndex+'.png',blob))
+		getCanvasBlob(rendererEle).then(blob=>{
+			zip.file(scrubberEle.value+'.png',blob)
+			requestAnimationFrame(animate)
+		})
 	}
 }
 window.onload=()=>{
@@ -53,7 +55,7 @@ window.onload=()=>{
 	animate()
 }
 scrubberEle.oninput=()=>{
-	clock=scrubberEle.value*duration
+	clock=scrubberEle.value/frameRate
 	animate()
 }
 

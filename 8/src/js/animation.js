@@ -3,6 +3,7 @@ const stages=[
 	// { length: 4 },
 	{ length: 2 },
 	{ length: 10 },
+	{ length: 10 },
 ]
 
 let clock=0
@@ -18,8 +19,7 @@ let frameCount=0
 		start+=stage.length
 	}
 	duration=start
-	scrubberEle.step=1/(duration*frameRate-1)
-	frameCount=duration*frameRate
+	scrubberEle.max=frameCount=duration*frameRate
 }
 const animation=()=>{
 	while(1){
@@ -54,6 +54,10 @@ const stagedAnimation=[
 		const p=easeOutCubic(phase)
 		group.rotation.y=initAngle-p*twoPi
 		geoData['china'].material.opacity=phase
+
+		// const scale=3-2*p
+		// group.scale.set(scale,scale,scale)
+		// group.position.set(0,-easeOutSine(1-phase),-easeInSine(1-phase))
 	},
 	// /* 1 */ phase=>{
 	// 	for(let country in arcs){
@@ -107,6 +111,9 @@ const stagedAnimation=[
 			}
 		}
 	},
+	/* 4 */ phase=>{
+		group.rotation.y=initAngle-easeInOutSine(phase)*twoPi
+	}
 ]
 
 setArcPhase=(arc,phase)=>{

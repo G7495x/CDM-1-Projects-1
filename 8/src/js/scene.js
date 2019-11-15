@@ -1,7 +1,7 @@
 const sphereRadius=sizeY/4
 const arcHeight=sphereRadius/8
 
-camera.position.set(500,0,0)
+camera.position.set(768,0,0)
 camera.lookAt(0,0,0)
 
 const group=new THREE.Group()
@@ -40,6 +40,7 @@ scene.add(ambientLight)
 const arcs={}
 const dotGeometry=new THREE.SphereBufferGeometry(2,9,9)
 const dotMaterial=new THREE.MeshBasicMaterial({ color: 0xc90b1c })
+// const dotMaterial=new THREE.MeshBasicMaterial({ color: 0x000000 })
 const addArc=(s,d)=>{
 	const arcSegmentCount=Math.floor(geoData[s].xyz.angleTo(geoData[d].xyz)/piBy180)
 	const src=geoData[s].phiTheta
