@@ -1,6 +1,6 @@
 const sizeX=1024
 const sizeY=768
-const frameRate=30
+const frameRate=60
 
 const rendererEle=document.getElementById('renderer')
 const scrubberEle=document.getElementById('scrubber')
