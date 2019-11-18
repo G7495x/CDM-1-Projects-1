@@ -1,12 +1,12 @@
 const stages=[
 	{ length: 8 },  //  0. Globe rotate entry + china fade in
-	{ length: 2 },  //  1. China -> 0.5, Guangdong -> 1
-	{ length: 2 },  //  2. Delay
+	// { length: 2 },  //  1. China -> 0.5, Guangdong -> 1
+	// { length: 2 },  //  2. Delay
 	{ length: 2 },  //  3. Arcs to local
 	{ length: 10 }, //  4. Globe rotation with arcs
 	{ length: 2 },  //  5. Arcs finish
 	{ length: 2 },  //  6. China -> 1, Guangdong -> 0
-	{ length: 2 },  //  7. Delay
+	// { length: 2 },  //  7. Delay
 	{ length: 2 },  //  8. Arcs to local
 	{ length: 10 }, //  9. Globe rotation with arcs
 	{ length: 2 },  // 10. Arcs finish
@@ -53,24 +53,27 @@ const smootherStep=phase=>{
 
 const initAngle=geoData['china'].phiTheta.y
 const hightlightAngle=90*piBy180
-// geoData['france'].phiTheta.y-=twoPi
-// geoData['uk'].phiTheta.y-=twoPi
-// geoData['peru'].phiTheta.y+=twoPi
+geoData['france'].phiTheta.y-=twoPi
+geoData['uk'].phiTheta.y-=twoPi
+geoData['peru'].phiTheta.y-=twoPi
+geoData['usa'].phiTheta.y-=twoPi
+geoData['canada'].phiTheta.y-=twoPi
 const stagedAnimation=[
 	/* 0 */ phase=>{
 		const p=easeOutCubic(phase)
 		group.rotation.y=initAngle-p*twoPi
-		geoData['china'].material.opacity=phase
+		geoData['guangdong'].material.opacity=phase
+		// geoData['china'].material.opacity=phase
 
 		// const scale=3-2*p
 		// group.scale.set(scale,scale,scale)
 		// group.position.set(0,-easeOutSine(1-phase),-easeInSine(1-phase))
 	},
-	/* 1 */ phase=>{
-		geoData['china'].material.opacity=1-phase*.5
-		geoData['guangdong'].material.opacity=phase
-	},
-	/* 2 */ phase=>{},
+	// /* 1 */ phase=>{
+	// 	// geoData['china'].material.opacity=1-phase*.5
+	// 	// geoData['guangdong'].material.opacity=phase
+	// },
+	// /* 2 */ phase=>{},
 	/* 3 */ phase=>{
 		for(let country in arcs[0]){
 			if(phase==0){
@@ -124,10 +127,11 @@ const stagedAnimation=[
 		}
 	},
 	/* 6 */ phase=>{
-		geoData['china'].material.opacity=.5+phase*.5
+		// geoData['china'].material.opacity=.5+phase*.5
+		geoData['china'].material.opacity=phase
 		geoData['guangdong'].material.opacity=1-phase
 	},
-	/* 7 */ phase=>{},
+	// /* 7 */ phase=>{},
 	/* 8 */ phase=>{
 		for(let country in arcs[1]){
 			if(phase==0){
@@ -198,5 +202,5 @@ setCountryTransparency=(country,phase)=>{
 	let p=phase*2
 	p=p<=1?p:2-p
 	p*=2
-	geoData[country].material.opacity=p
+	geoData[country].material.opacity=Math.max(10*p-9,0)
 }
