@@ -65,9 +65,11 @@ const stagedAnimation=[
 		geoData['guangdong'].material.opacity=phase
 		// geoData['china'].material.opacity=phase
 
-		// const scale=3-2*p
-		// group.scale.set(scale,scale,scale)
-		// group.position.set(0,-easeOutSine(1-phase),-easeInSine(1-phase))
+		const q=Math.min(phase*2,1)
+		// const scale=4-3*p
+		const scale=4-3*easeOutCubic(q)
+		group.scale.set(scale,scale,scale)
+		group.position.set(0,-Math.pow(1-q,2)*sizeX,-Math.pow(1-q,2)*sizeX/2)
 	},
 	// /* 1 */ phase=>{
 	// 	// geoData['china'].material.opacity=1-phase*.5
