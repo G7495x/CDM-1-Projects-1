@@ -1,6 +1,7 @@
 // Convention
-//  N: +ve, S: -ve
-//  E: -ve, W: +ve
+// N: +ve, S: -ve
+// E: -ve, W: +ve
+// (X,Y) = (NS,EW)
 const geoData={
 	china:       {latLong: new THREE.Vector2( 35.8617,-104.1954)}, // Centroid
 	guangdong:   {latLong: new THREE.Vector2( 23.3790,-113.7633)}, //Port
