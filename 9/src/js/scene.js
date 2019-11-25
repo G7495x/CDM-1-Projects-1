@@ -41,7 +41,7 @@ const arcs=[{},{}]
 const dotGeometry=new THREE.SphereBufferGeometry(2,9,9)
 const dotMaterial=new THREE.MeshBasicMaterial({ color: 0xDC8130 })
 // const dotMaterial=new THREE.MeshBasicMaterial({ color: 0x000000 })
-const addArc=(arcs,s,d)=>{
+const addArc=(arcsObj,s,d)=>{
 	const arcSegmentCount=Math.floor(geoData[s].xyz.angleTo(geoData[d].xyz)/piBy180)
 	const src=geoData[s].phiTheta
 	const dst=geoData[d].phiTheta
@@ -51,9 +51,9 @@ const addArc=(arcs,s,d)=>{
 
 	const arcPoints=new Array(arcSegmentCount+1)
 	const arcDots=new Array(arcSegmentCount+1)
-	arcs[d]={}
-	arcs[d].points=arcPoints
-	arcs[d].dots=arcDots
+	arcsObj[d]={}
+	arcsObj[d].points=arcPoints
+	arcsObj[d].dots=arcDots
 	for(let i=0;i<=arcSegmentCount;++i){
 		arcPoints[i]=sphericalToCartesian(src.clone().lerp(dst,i/arcSegmentCount)).multiplyScalar(sphereRadius+Math.sin(Math.PI*i/arcSegmentCount)*arcHeight)
 		arcDots[i]=new THREE.Mesh(dotGeometry,dotMaterial)
