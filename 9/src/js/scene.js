@@ -46,7 +46,7 @@ const addArc=(arcsObj,s,d)=>{
 	const src=geoData[s].phiTheta
 	const dst=geoData[d].phiTheta
 
-	// For arc direction correction with source as china
+	// For shortest arc from src to dst
 	if(Math.abs(src.y-dst.y)>Math.PI) dst.y-=Math.PI*2
 
 	const arcPoints=new Array(arcSegmentCount+1)
