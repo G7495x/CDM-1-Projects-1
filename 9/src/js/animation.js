@@ -43,11 +43,6 @@ const animation=()=>{
 	stagedAnimation[stage](phase)
 }
 
-const smootherStep=phase=>{
-	let p=phase*phase*(3-2*phase)
-	return (1-phase)*p+phase*phase*(2-phase)
-}
-
 const initAngle=geoData['china'].phiTheta.y
 const hightlightAngle=90*piBy180
 geoData['france'].phiTheta.y-=twoPi
