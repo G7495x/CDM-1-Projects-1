@@ -45,6 +45,7 @@ const stages=[
 	{ length: 2.5 },  // 42. Zoom to 'Oakland'
 	// { length: 2.5 },  // 43. Zoom to 'North Vancouver'
 	{ length: 2.5 },  // 44. Zoom to 'Vancouver'              ]
+	{ length: 10 },
 	{ length: 5 },
 ]
 
@@ -153,54 +154,88 @@ const stagedAnimation=[
 	// 	}
 	// 	groupContainer.rotation.y=vars[2].initAngle+phase*piBy8
 	// },
-	/*  3 */ phasedSequenceHOF( 3,'Jixi'                   ),
-	/*  4 */ phasedSequenceHOF( 4,'Mudanjiang'             ),
-	/*  5 */ phasedSequenceHOF( 5,'Seoul'                  ),
-	/*  6 */ phasedSequenceHOF( 6,'Taipei'                 ),
-	/*  7 */ phasedSequenceHOF( 7,'Shanghai'               ),
-	/*  8 */ phasedSequenceHOF( 8,'Manila'                 ),
-	/*  9 */ phasedSequenceHOF( 9,'Hsinchu'                ),
-	/* 10 */ phasedSequenceHOF(10,'Nantong'                ),
-	/* 11 */ phasedSequenceHOF(11,'Qingdao'                ),
-	/* 12 */ phasedSequenceHOF(12,'Wuxi'                   ),
-	/* 13 */ phasedSequenceHOF(13,'Nanjing'                ),
-	/* 14 */ phasedSequenceHOF(14,'Tianjin'                ),
-	/* 15 */ phasedSequenceHOF(15,'Hefei'                  ),
-	/* 16 */ phasedSequenceHOF(16,'Beijing'                ),
-	/* 17 */ phasedSequenceHOF(17,'Hong Kong'              ),
-	/* 18 */ phasedSequenceHOF(18,'Zhuhai'                 ),
-	/* 19 */ phasedSequenceHOF(19,'Guangzhou'              ),
-	/* 20 */ phasedSequenceHOF(20,'Taiyuan'                ),
-	/* 21 */ phasedSequenceHOF(21,'Loudi'                  ),
-	/* 22 */ phasedSequenceHOF(22,'Chengdu'                ),
-	/* 23 */ phasedSequenceHOF(23,'Bangkok'                ),
+
+	/* 05 */ phasedSequenceHOF( 5,'Seoul'                  ),
 	/* 24 */ phasedSequenceHOF(24,'Dhaka'                  ),
-	/* 25 */ phasedSequenceHOF(25,'Bangalore'              ),
-	/* 26 */ phasedSequenceHOF(26,'Delhi'                  ),
-	/* 27 */ phasedSequenceHOF(27,'Mumbai'                 ),
 	/* 28 */ phasedSequenceHOF(28,'Shiraz'                 ),
-	/* 29 */ phasedSequenceHOF(29,'Tehran'                 ),
+	/* 10 */ phasedSequenceHOF(10,'Nantong'                ),
+	/* 41 */ phasedSequenceHOF(41,'Oliver'                 ),
+	/* 15 */ phasedSequenceHOF(15,'Hefei'                  ),
+	/* 13 */ phasedSequenceHOF(13,'Nanjing'                ),
+	/* 25 */ phasedSequenceHOF(25,'Bangalore'              ),
+	/* 19 */ phasedSequenceHOF(19,'Guangzhou'              ),
+	/* 03 */ phasedSequenceHOF( 3,'Jixi'                   ),
+	/* 09 */ phasedSequenceHOF( 9,'Hsinchu'                ),
 	/* 30 */ phasedSequenceHOF(30,'Manama'                 ),
 	/* 31 */ phasedSequenceHOF(31,"Modi'in-Maccabim-Re'ut" ),
-	/* 32 */ phasedSequenceHOF(32,'Beersheba'              ),
-	/* 33 */ phasedSequenceHOF(33,'London'                 ),
-	/* 34 */ phasedSequenceHOF(34,'Polinyà de Xúquer'      ),
-	/* 35 */ phasedSequenceHOF(35,'São Paulo'              ),
-	/* 36 */ phasedSequenceHOF(36,'Bogotá'                 ),
-	/* 37 */ phasedSequenceHOF(37,'Toronto'                ),
 	/* 38 */ phasedSequenceHOF(38,'León'                   ),
-	/* 39 */ phasedSequenceHOF(39,'Edmonton'               ),
-	/* 40 */ phasedSequenceHOF(40,'Calgary'                ),
-	/* 41 */ phasedSequenceHOF(41,'Oliver'                 ),
-	/* 42 */ phasedSequenceHOF(42,'Oakland'                ),
+	/* 27 */ phasedSequenceHOF(27,'Mumbai'                 ),
 	// /* 43 */ phasedSequenceHOF(43,'North Vancouver'        ),
+	/* 16 */ phasedSequenceHOF(16,'Beijing'                ),
+	/* 40 */ phasedSequenceHOF(40,'Calgary'                ),
+	/* 42 */ phasedSequenceHOF(42,'Oakland'                ),
+	/* 39 */ phasedSequenceHOF(39,'Edmonton'               ),
+	/* 29 */ phasedSequenceHOF(29,'Tehran'                 ),
+	/* 08 */ phasedSequenceHOF( 8,'Manila'                 ),
+	/* 20 */ phasedSequenceHOF(20,'Taiyuan'                ),
+	/* 26 */ phasedSequenceHOF(26,'Delhi'                  ),
+	/* 21 */ phasedSequenceHOF(21,'Loudi'                  ),
+	/* 34 */ phasedSequenceHOF(34,'Polinyà de Xúquer'      ),
+	/* 07 */ phasedSequenceHOF( 7,'Shanghai'               ),
+	/* 17 */ phasedSequenceHOF(17,'Hong Kong'              ),
+	/* 06 */ phasedSequenceHOF( 6,'Taipei'                 ),
+	/* 33 */ phasedSequenceHOF(33,'London'                 ),
+	/* 36 */ phasedSequenceHOF(36,'Bogotá'                 ),
+	/* 11 */ phasedSequenceHOF(11,'Qingdao'                ),
+	/* 35 */ phasedSequenceHOF(35,'São Paulo'              ),
+	/* 18 */ phasedSequenceHOF(18,'Zhuhai'                 ),
+	/* 12 */ phasedSequenceHOF(12,'Wuxi'                   ),
+	/* 14 */ phasedSequenceHOF(14,'Tianjin'                ),
+	/* 32 */ phasedSequenceHOF(32,'Beersheba'              ),
+	/* 37 */ phasedSequenceHOF(37,'Toronto'                ),
+	/* 23 */ phasedSequenceHOF(23,'Bangkok'                ),
+	/* 04 */ phasedSequenceHOF( 4,'Mudanjiang'             ),
+	/* 22 */ phasedSequenceHOF(22,'Chengdu'                ),
 	/* 44 */ phasedSequenceHOF(44,'Vancouver'              ),
-	phase=>{
+
+	/* 45 */ phase=>{
 		const p=easeInOutCubic(phase)
 		groupContainer.rotation.y=initAngle+p*twoPi
 		for(let i in arcs)
 			setArcPhase(arcs[i],p*.5)
 	},
+	/* 46 */ phase=>{
+		if(phase===0){
+			if(vars[46]===undefined) vars[46]={}
+			vars[46].initQuaternion=new THREE.Quaternion()
+			vars[46].finalQuaternion=new THREE.Quaternion()
+			vars[46].finalQuaternion.setFromUnitVectors(
+				new THREE.Vector3(0,1,0),
+				geoData['Vancouver'].xyz.clone().multiply(new THREE.Vector3(-1,1,-1))
+			)
+			vars[46].initPosition=groupContainer2.position.clone()
+			vars[46].finalPosition=new THREE.Vector3(0,-sizeY*1.5,0)
+		}
+
+		const p=easeInOutCubic(phase)
+		groupContainer.rotation.y=initAngle+easeInCubic(phase)*piBy2
+		// groupContainer2.rotation.z=-piBy4*p
+
+		THREE.Quaternion.slerp(
+			vars[46].initQuaternion,
+			vars[46].finalQuaternion,
+			group.quaternion,
+			p
+		)
+
+		groupContainer2.position.lerpVectors(
+			vars[46].initPosition,
+			vars[46].finalPosition,
+			p
+		)
+		const scale=1+2*easeInOutQuart(phase)
+		groupContainer2.scale.set(scale,scale,scale)
+	}
 ]
 
 function setArcPhase(arc,phase){
@@ -211,6 +246,10 @@ function setArcPhase(arc,phase){
 		if(phase<=2) scale=clamp(phase-p,0,1)
 		else scale=clamp(4-phase-(1-p),0,1)
 		scale=Math.round(scale)+.0001
+
+		if(phase>0 && (i===0 || i===Math.round((phase-.5)*l)))
+			scale=2.5*clamp(phase*2,0,1)+.0001
+
 		arc[i].scale.set(scale,scale,scale)
 	}
 }
@@ -245,5 +284,17 @@ function phasedSequenceHOF(i,loc){
 		// 	group.quaternion,
 		// 	p
 		// )
+
+		let scale
+		if(phase*2.5<=.5){
+			const p=easeOutExpo(phase*5)
+			scale=.0001+90*p
+		}else if(phase*2.5>=2){
+			const p=easeInExpo((phase*2.5-2)*2)
+			scale=.0001+90*(1-p)
+		}else{
+			scale=90
+		}
+		pins[loc].scale.set(scale,scale,scale)
 	}
 }
